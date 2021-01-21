@@ -58,7 +58,8 @@ module Sunspot #:nodoc:
       end
 
       def slave_config(sunspot_rails_configuration)
-        config = Sunspot::Configuration.build
+        user_config = sunspot_rails_configuration.instance_variable_get("@user_configuration")
+        config = Sunspot::Configuration.build(user_config)
         builder = sunspot_rails_configuration.scheme == 'http' ? URI::HTTP : URI::HTTPS
         config.solr.url = builder.build(
           :host => sunspot_rails_configuration.hostname,

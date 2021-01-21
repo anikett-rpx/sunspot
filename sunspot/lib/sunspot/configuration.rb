@@ -19,7 +19,9 @@ module Sunspot
       #
       # LightConfig::Configuration:: new configuration instance with defaults
       #
-      def build #:nodoc:
+      def build(userconfig = {}) #:nodoc:
+        username = userconfig["solr"]["user"] || ""
+        password = userconfig["solr"]["pass"] || ""
         LightConfig.build do
           solr do
             url 'http://127.0.0.1:8983/solr/default'
@@ -27,6 +29,8 @@ module Sunspot
             open_timeout nil
             proxy nil
             update_format :xml
+            user username
+            password password
           end
           master_solr do
             url nil

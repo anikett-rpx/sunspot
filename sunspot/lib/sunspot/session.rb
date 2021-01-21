@@ -259,7 +259,9 @@ module Sunspot
         read_timeout: config.solr.read_timeout,
         open_timeout: config.solr.open_timeout,
         proxy: config.solr.proxy,
-        update_format: update_format
+        update_format: update_format,
+        user: config.solr.user,
+        password: config.solr.password
       )
     end
 
